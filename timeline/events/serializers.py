@@ -2,13 +2,14 @@ from rest_framework import serializers
 from timeline.events.models import Event
 from timeline.users.models import User
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('name', )
+        fields = ('name', 'username', 'email', 'pk')
 
-class EventSerializer(serializers.HyperlinkedModelSerializer):
+class EventSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
     class Meta:
         model = Event
-        fields = ('create_date', 'event_type')
-
+        fields = ('create_date', 'event_type', 'user')
