@@ -9,7 +9,7 @@ from timeline.users.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-print("esta?", settings.AUTH_USER_MODEL)
+
 class Event(RegistratorModel):
     create_date = models.DateTimeField(auto_now_add=True)
     event_type = models.CharField(verbose_name=_("Event Type"), max_length=2, choices=constants.EVENT_TYPES)

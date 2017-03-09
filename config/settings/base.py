@@ -52,6 +52,7 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'rest_framework', #rest
 ]
 
 # Apps specific for this project go here.
@@ -94,6 +95,18 @@ DEBUG = env.bool('DJANGO_DEBUG', False)
 FIXTURE_DIRS = (
     str(APPS_DIR.path('fixtures')),
 )
+
+# REST
+# ------------------------------------------------------------------------------
+# See: 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'PAGE_SIZE': 20
+}
+
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------

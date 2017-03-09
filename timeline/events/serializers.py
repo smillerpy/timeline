@@ -5,10 +5,10 @@ from timeline.users.models import User
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('name')
+        fields = ('name', )
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
-        fields = ('create_date', 'event_type', 'user')
+        fields = ('create_date', 'event_type')
 
