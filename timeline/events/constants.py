@@ -1,0 +1,4 @@
+COOL_EVENT = 1
+SUPERCOOL_EVENT = 2
+
+EVENT_TYPES = ((COOL_EVENT, "Cool Event"), (SUPERCOOL_EVENT, "Super Cool Event"))

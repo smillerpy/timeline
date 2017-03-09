@@ -1,0 +1,10 @@
+{% extends "events/event.html" %}
+{% load i18n %}
+
+{% block event_header %}
+<b><%= event_card.get('calendar_title') %></b>
+{% endblock %}
+
+{% block event_body %}
+	<%= event_card.get('calendar_name') %>
+{% endblock %}

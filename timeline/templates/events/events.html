@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block aditional_js %}
+  {% include "events/event_cool.html" with template_id="event_cool" %}
+  {% include "events/event_supercool.html" with template_id="event_supercool" %}
+    <script type="text/javascript" src="{% static 'js/underscore.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/backbone.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'js/events.js' %}"> </script>
+{% endblock aditional_js %}
+
+{% block title %}Timeline{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Timeline</h2>
+
+  <ul class="timeline_timeline">
+  </ul>
+</div>
+{% endblock content %}
