@@ -1,6 +1,5 @@
-from django.db import models
 
-class RegistratorModel(models.Model):
+class Registrator():
     @classmethod
     def register(cls, key=None):
         def onCall(clss, *args):
@@ -16,9 +15,6 @@ class RegistratorModel(models.Model):
         return onCall
 
     @classmethod
-    def get_model_by_type(cls, type_key):
+    def get_cls_by_type(cls, type_key):
         type_key = "%s" % type_key
         return cls.registered.get(type_key, None)
-
-    class Meta:
-        abstract = True

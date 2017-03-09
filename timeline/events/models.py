@@ -2,7 +2,7 @@
 from __future__ import unicode_literals, absolute_import
 
 
-from timeline.common.models import RegistratorModel
+from timeline.common.models import Registrator
 from timeline.events import constants
 from timeline.users.models import User
 
@@ -10,7 +10,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
-class Event(RegistratorModel):
+class Event(models.Model, Registrator):
     create_date = models.DateTimeField(auto_now_add=True)
     event_type = models.CharField(verbose_name=_("Event Type"), max_length=2, choices=constants.EVENT_TYPES)
     user =  models.ForeignKey(User())
@@ -21,10 +21,9 @@ class Event(RegistratorModel):
     def __unicode__(self):
         return u"%s (%s)" % (self.__class__, self.pk)
 
-    @classmethod
-    def get_event(cls, event_id, event_type, user):
-        model = cls.get_model_by_type(event_type)
-        e = model.objects.get(user=user)
+    def get_full_event(self):
+        model = self.get_cls_by_type(self.event_type)
+        e = model.objects.get(pk=self.id)
         return e
 
     def get_cls_type(self):
