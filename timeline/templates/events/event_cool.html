@@ -1,10 +1,7 @@
 {% extends "events/event.html" %}
 {% load i18n %}
 
-{% block event_header %}
-<b><%= event_card.get('calendar_title') %></b>
-{% endblock %}
-
 {% block event_body %}
-	<%= event_card.get('calendar_name') %>
+	this is your link: <a href="<%= event_card.get('link') %>">click</a>
+	this is your color: <%= event_card.get('color') %>
 {% endblock %}

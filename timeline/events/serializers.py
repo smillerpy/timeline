@@ -20,6 +20,9 @@ class EventSerializer(serializers.ModelSerializer, Registrator):
         fullobj = obj.get_full_event()
         serializer = self.get_cls_by_type(obj.event_type)()
         data.update(serializer.to_representation(fullobj))
+        data["template"] = fullobj.get_template()
+        data["badge"] = fullobj.get_badge()
+        data["event_name"] = fullobj.get_type_name()
         return data
 
     #def to_internal_value(self, data)

@@ -1,8 +1,8 @@
 var Timeline = Backbone.Collection.extend({
-  url: '/timeline/api/v1/timeline_card/',
+  url: '/events/events/',
   parse: function(response) {
-          this.recent_meta = response.meta || {};
-          return response.objects || response;
+          this.recent_meta = response.next;
+          return response.results || response;
       }
 });
 
@@ -17,7 +17,6 @@ var TimelineView = Backbone.View.extend({
       },
       clean_all: function(options){
         this.$el.children().remove();
-        this.offset = 0;
         this.options = options;
         _.bindAll(this, 'render');
         this.full = false;
@@ -34,8 +33,6 @@ var TimelineView = Backbone.View.extend({
         var that = instance;
         var _render = function (timeline_coll) {
           if (timeline_coll.models.length > 0){
-            that.limit = timeline_coll.recent_meta.limit;
-            that.offset = timeline_coll.recent_meta.offset + that.limit;
             _(timeline_coll.models).each(function(item, index) {
               var template = _.template($('#'+item.get('template')).html());
               that.$el.append(template({'event_card': item}));
@@ -63,13 +60,8 @@ var TimelineView = Backbone.View.extend({
         $('#tl-loader').show()
         var timeline_model = new Timeline();
         filters = {}
-        filters.contact_id = CONTACT_ID;
         if (this.type_filter){
             filters.type = this.type_filter;
-        }
-        if (this.offset){
-          filters.offset = this.offset;
-          filters.limit = this.limit;
         }
         timeline_model.fetch({
           data: filters,

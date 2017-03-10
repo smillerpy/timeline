@@ -56,7 +56,7 @@ class CoolEvent(Event):
         return "event_cool"
 
     def get_badge(self):
-        return "inbox"
+        return "thumbs-o-up"
 
 @Event.register(constants.SUPERCOOL_EVENT)
 class SuperCoolEvent(Event):
@@ -74,4 +74,4 @@ class SuperCoolEvent(Event):
         return "event_supercool"
 
     def get_badge(self):
-        return "inbox"
+        return "snowflake-o"

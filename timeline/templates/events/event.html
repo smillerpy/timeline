@@ -3,22 +3,21 @@
 		<div class="card">
 			<div class="tl-card-body">
 				<div class="tl_event_header">
+
+			<div class="tl_event_badge" title="<%= event_card.get('event_name') %>">
+		 		<i class="fa fa-<%= event_card.get('badge') %>"></i> 
+					<span ><%= event_card.get('create_name') %></span>
+					<p>user: <%= event_card.get('user').email %></p>
+			</div>
+
 					<div class="tl_event_header_msg">
 						<span class="tl_event_date"><%= event_card.get('create_date') %></span>
-						{% block event_header %}{% endblock %}
 					</div>
 					
 				</div>
 				<div class="tl_event_body">
 					{% block event_body %}{% endblock %}
 				</div>
-			    <div class="tl_under_the_box">
-					{% block event_under %}{% endblock %}
-			    </div>
-			</div>
-
-			<div class="tl_event_badge" title="<%= event_card.get('card_type') %>" title="<%= event_card.get('type_name') %>">
-				<i class="fa fa-<%= event_card.get('badge') %>"></i> 
 			</div>
 		</div>
   	</li>
